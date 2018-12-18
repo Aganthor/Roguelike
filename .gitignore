@@ -1,9 +1,11 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-.idea
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
 
-*.pyc
+.idea
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -38,9 +40,6 @@
 
 # CMake
 cmake-build-*/
-
-#pycache
-__pycache__/*
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
