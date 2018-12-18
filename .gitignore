@@ -3,6 +3,8 @@
 
 .idea
 
+*.pyc
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -37,6 +39,9 @@
 # CMake
 cmake-build-*/
 
+#pycache
+__pycache__/*
+
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
@@ -63,5 +68,3 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
-*.pyc
-*.pyc
