@@ -11,8 +11,12 @@ from death_functions import kill_monster, kill_player
 def main():
     screen_width = 80
     screen_height = 50
+
+    bar_width = 20
+    panel_height = 7
+    panel_y = screen_height - panel_height
     map_width = 80
-    map_height = 45
+    map_height = 43
 
     room_max_size = 10
     room_min_size = 6
@@ -39,6 +43,7 @@ def main():
     libtcod.console_init_root(screen_width, screen_height, 'Roguelike tutorial', False)
 
     con = libtcod.console_new(screen_width, screen_height)
+    panel = libtcod.console_new(screen_width, panel_height)
 
     game_map = GameMap(map_width, map_height)
     game_map.make_map(max_rooms, room_min_size, room_max_size, map_width, map_height, player, entities, max_monsters_per_room)
@@ -57,7 +62,7 @@ def main():
 
         if fov_recompute:
             recompute_fov(fov_map, player.x, player.y, fov_radius, fov_light_walls, fov_algorithm)
-       
+
         render_all(con, entities, player, game_map, fov_map, fov_recompute, screen_width, screen_height, colors)
 
         fov_recompute = False
@@ -76,7 +81,7 @@ def main():
             dx, dy = move
             destination_x = player.x + dx
             destination_y = player.y + dy
-            
+
             if not game_map.is_blocked(destination_x, destination_y):
                 target = get_blocking_entities_at_location(entities, destination_x, destination_y)
 
@@ -86,7 +91,7 @@ def main():
                 else:
                     player.move(dx, dy)
                     fov_recompute = True
-                
+
                 game_state = GameStates.ENEMY_TURN
 
         if exit:
@@ -128,11 +133,11 @@ def main():
                             else:
                                 message = kill_monster(dead_entity)
 
-                            print(message)                            
+                            print(message)
 
                             if game_state == GameStates.PLAYER_DEAD:
                                 break
-                                
+
                     if game_state == GameStates.PLAYER_DEAD:
                         break
             else:

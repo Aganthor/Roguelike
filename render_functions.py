@@ -6,6 +6,11 @@ class RenderOrder(Enum):
     ITEM = 2
     ACTOR = 3
 
+def render_bar(panel, x, y, total_width, name, maximum, bar_color, back_color):
+    bar_width = int(float(value) / maximum * total_width)
+
+    libtcod.console_set_default_background(panel, back_color)
+
 
 def render_all(con, entities, player, game_map, fov_map, fov_recompute, screen_width, screen_height, colors):
     # Draw all the tiles in the game map.
@@ -25,7 +30,7 @@ def render_all(con, entities, player, game_map, fov_map, fov_recompute, screen_w
                     if wall:
                         libtcod.console_set_char_background(con, x, y, colors.get('dark_wall'), libtcod.BKGND_SET)
                     else:
-                        libtcod.console_set_char_background(con, x, y, colors.get('dark_ground'), libtcod.BKGND_SET)                
+                        libtcod.console_set_char_background(con, x, y, colors.get('dark_ground'), libtcod.BKGND_SET)
 
 
     # Draw all entities in the list

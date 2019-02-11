@@ -68,6 +68,7 @@ class GameMap:
                 # finally, append the new room to the list
                 rooms.append(new_room)
                 num_rooms += 1
+        print("Created " + str(num_rooms) + " rooms in our map!")
 
 
     def create_room(self, room):
