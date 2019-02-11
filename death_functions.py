@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 from game_states import GameStates
 from render_functions import RenderOrder
 from game_messages import Message

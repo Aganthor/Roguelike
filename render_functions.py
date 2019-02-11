@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 from enum import Enum
 
 class RenderOrder(Enum):
@@ -6,23 +6,15 @@ class RenderOrder(Enum):
     ITEM = 2
     ACTOR = 3
 
-<<<<<<< HEAD
-def render_bar(panel, x, y, total_width, name, maximum, bar_color, back_color):
-    bar_width = int(float(value) / maximum * total_width)
-
-    libtcod.console_set_default_background(panel, back_color)
-
-=======
 def get_names_under_mouse(mouse, entities, fov_map):
     (x, y) = (mouse.cx, mouse.cy)
->>>>>>> 687807c67c9bce2724d3cfb0a3846c76328f745a
 
     names = [entity.name for entity in entities
              if entity.x == x and entity.y == y and libtcod.map_is_in_fov(fov_map, entity.x, entity.y)]
     names = ', '.join(names)
 
     return names.capitalize()
-
+    
 def render_bar(panel, x, y, total_width, name, value, maximum, bar_color, back_color):
     bar_width = int(float(value) / maximum * total_width)
 

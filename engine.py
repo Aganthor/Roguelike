@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 from input_handlers import handle_keys
 from entity import Entity, get_blocking_entities_at_location
 from render_functions import clear_all, render_all, RenderOrder
@@ -15,20 +15,13 @@ def main():
     screen_width = 80
     screen_height = 50
 
-<<<<<<< HEAD
     bar_width = 20
-    panel_height = 7
-    panel_y = screen_height - panel_height
-=======
-    bar_width  = 20
     panel_height = 7
     panel_y = screen_height - panel_height
 
     message_x = bar_width + 2
     message_width = screen_width - bar_width - 2
     message_height = panel_height - 1
-
->>>>>>> 687807c67c9bce2724d3cfb0a3846c76328f745a
     map_width = 80
     map_height = 43
 
@@ -82,14 +75,9 @@ def main():
 
         if fov_recompute:
             recompute_fov(fov_map, player.x, player.y, fov_radius, fov_light_walls, fov_algorithm)
-<<<<<<< HEAD
 
-        render_all(con, entities, player, game_map, fov_map, fov_recompute, screen_width, screen_height, colors)
-=======
-       
         render_all(con, panel, entities, player, game_map, fov_map, fov_recompute, message_log,
                    screen_width, screen_height, bar_width, panel_height, panel_y, mouse, colors)
->>>>>>> 687807c67c9bce2724d3cfb0a3846c76328f745a
 
         fov_recompute = False
 
@@ -175,11 +163,7 @@ def main():
                             else:
                                 message = kill_monster(dead_entity)
 
-<<<<<<< HEAD
-                            print(message)
-=======
                             message_log.add_message(message)
->>>>>>> 687807c67c9bce2724d3cfb0a3846c76328f745a
 
                             if game_state == GameStates.PLAYER_DEAD:
                                 break

@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 
 class BasicMonster:
     def take_turn(self, target, fov_map, game_map, entities):
@@ -10,5 +10,5 @@ class BasicMonster:
             elif target.fighter.hp > 0:
                 attack_results = monster.fighter.attack(target)
                 results.extend(attack_results)
-        
+
         return results
