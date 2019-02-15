@@ -1,6 +1,13 @@
 import tcod as libtcod
+from game_states import GameStates
 
-def handle_keys(key):
+def handle_keys(key, game_state):
+    if game_state == GameStates.PLAYERS_TURN:
+        return handle_player_turn_keys(key)
+
+    return {}
+
+def handle_player_turn_keys(key):
     # Mouvement keys...
     key_char = chr(key.c)
 
@@ -22,6 +29,8 @@ def handle_keys(key):
         return {'move': (1, 1)}
     elif key_char == 'g':
         return {'pickup': True}
+    elif key_char == 'i':
+        return {'show_inventory': True}
 
     if key.vk == libtcod.KEY_ENTER and key.lalt:
         #alt-enter: toggle full screen

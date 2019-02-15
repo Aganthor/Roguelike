@@ -69,6 +69,7 @@ def main():
     mouse = libtcod.Mouse()
 
     game_state = GameStates.PLAYERS_TURN
+    previous_game_state = game_state
 
     while not libtcod.console_is_window_closed():
         libtcod.sys_check_for_event(libtcod.EVENT_KEY_PRESS | libtcod.EVENT_MOUSE, key, mouse)
@@ -77,7 +78,7 @@ def main():
             recompute_fov(fov_map, player.x, player.y, fov_radius, fov_light_walls, fov_algorithm)
 
         render_all(con, panel, entities, player, game_map, fov_map, fov_recompute, message_log,
-                   screen_width, screen_height, bar_width, panel_height, panel_y, mouse, colors)
+                   screen_width, screen_height, bar_width, panel_height, panel_y, mouse, colors, game_state)
 
         fov_recompute = False
 
@@ -87,6 +88,7 @@ def main():
         action = handle_keys(key)
         move = action.get('move')
         pickup = action.get('pickup')
+        show_inventory = action.get('show_inventory')
         exit = action.get('exit')
         fullscreen = action.get('fullscreen')
 
@@ -118,8 +120,15 @@ def main():
                 else:
                     message_log.add_message(Message('There is nothing here to pick up!', libtcod.yellow))
 
+        if show_inventory:
+            previous_game_state = game_state
+            game_state = GameStates.SHOW_INVENTORY
+
         if exit:
-            return True
+            if game_state == GameStates.SHOW_INVENTORY:
+                game_state = previous_game_state
+            else:
+                return True
 
         if fullscreen:
             libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen())
