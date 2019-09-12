@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 from input_handlers import handle_keys
 from entity import Entity, get_blocking_entities_at_location
 from render_functions import clear_all, render_all, RenderOrder
@@ -15,14 +15,13 @@ def main():
     screen_width = 80
     screen_height = 50
 
-    bar_width  = 20
+    bar_width = 20
     panel_height = 7
     panel_y = screen_height - panel_height
 
     message_x = bar_width + 2
     message_width = screen_width - bar_width - 2
     message_height = panel_height - 1
-
     map_width = 80
     map_height = 43
 
@@ -77,7 +76,7 @@ def main():
 
         if fov_recompute:
             recompute_fov(fov_map, player.x, player.y, fov_radius, fov_light_walls, fov_algorithm)
-       
+
         render_all(con, panel, entities, player, game_map, fov_map, fov_recompute, message_log,
                    screen_width, screen_height, bar_width, panel_height, panel_y, mouse, colors, game_state)
 
@@ -100,7 +99,7 @@ def main():
             dx, dy = move
             destination_x = player.x + dx
             destination_y = player.y + dy
-            
+
             if not game_map.is_blocked(destination_x, destination_y):
                 target = get_blocking_entities_at_location(entities, destination_x, destination_y)
 
@@ -110,7 +109,7 @@ def main():
                 else:
                     player.move(dx, dy)
                     fov_recompute = True
-                
+
                 game_state = GameStates.ENEMY_TURN
         elif pickup and game_state == GameStates.PLAYERS_TURN:
             for entity in entities:
@@ -129,6 +128,10 @@ def main():
         if inventory_index is not None and previous_game_state != GameStates.PLAYER_DEAD and inventory_index < len(player.inventory.items):
             item = player.inventory.items[inventory_index]
             print(item)
+
+        if show_inventory:
+            previous_game_state = game_state
+            game_state = GameStates.SHOW_INVENTORY
 
         if exit:
             if game_state == GameStates.SHOW_INVENTORY:
@@ -182,7 +185,7 @@ def main():
 
                             if game_state == GameStates.PLAYER_DEAD:
                                 break
-                                
+
                     if game_state == GameStates.PLAYER_DEAD:
                         break
             else:

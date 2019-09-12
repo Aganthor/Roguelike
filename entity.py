@@ -1,5 +1,5 @@
 import math
-import libtcodpy as libtcod
+import tcod as libtcod
 from render_functions import RenderOrder
 
 class Entity:
@@ -45,7 +45,7 @@ class Entity:
         dx = int(round(dx / distance))
         dy = int(round(dy / distance))
 
-        if not (game_map.is_blocked(self.x + dx, self.y + dy) or 
+        if not (game_map.is_blocked(self.x + dx, self.y + dy) or
                 get_blocking_entities_at_location(entities, self.x + dx, self.y + dy)):
             self.move(dx, dy)
 
@@ -86,7 +86,7 @@ class Entity:
                 self.y = y
         else:
             # Keep the old move function as a backup so that if there are no paths (for example another monster blocks a corridor)
-            # it will still try to move towards the player (closer to the corridor opening)            
+            # it will still try to move towards the player (closer to the corridor opening)
             self.move_towards(target.x, target.y, game_map, entities)
 
         # Delete the path to free memory
@@ -101,5 +101,5 @@ def get_blocking_entities_at_location(entities, destination_x, destination_y):
     for entity in entities:
         if entity.blocks and entity.x == destination_x and entity.y == destination_y:
             return entity
-    
+
     return None

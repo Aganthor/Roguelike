@@ -1,6 +1,6 @@
 from random import randint
 
-import libtcodpy as libtcod
+import tcod as libtcod
 
 from map_objects.tile import Tile
 from map_objects.rectangle import Rect
@@ -70,6 +70,7 @@ class GameMap:
                 # finally, append the new room to the list
                 rooms.append(new_room)
                 num_rooms += 1
+        print("Created " + str(num_rooms) + " rooms in our map!")
 
 
     def create_room(self, room):
@@ -107,7 +108,7 @@ class GameMap:
                     monster = Entity(x, y, 'o', libtcod.desaturated_green, 'Orc', blocks=True, render_order=RenderOrder.ACTOR, fighter=fighter_component, ai=ai_component)
                 else:
                     fighter_component = Fighter(hp=16, defense=1, power=4)
-                    ai_component = BasicMonster()                    
+                    ai_component = BasicMonster()
                     monster = Entity(x, y, 'T', libtcod.darker_green, 'Troll', blocks=True, render_order=RenderOrder.ACTOR, fighter=fighter_component, ai=ai_component)
 
                 entities.append(monster)

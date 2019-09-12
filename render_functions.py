@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 from enum import Enum
 from game_states import GameStates
 from menus import inventory_menu
@@ -51,7 +51,7 @@ def render_all(con, panel, entities, player, game_map, fov_map, fov_recompute, m
                     if wall:
                         libtcod.console_set_char_background(con, x, y, colors.get('dark_wall'), libtcod.BKGND_SET)
                     else:
-                        libtcod.console_set_char_background(con, x, y, colors.get('dark_ground'), libtcod.BKGND_SET)                
+                        libtcod.console_set_char_background(con, x, y, colors.get('dark_ground'), libtcod.BKGND_SET)
 
 
     # Draw all entities in the list
